@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - Student Nest</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <style>
+    :root {
+      --primary: #3a7bd5;
+      --secondary: #00d2ff;
+      --accent: #ff6b6b;
+      --light: #f8f9fa;
+      --dark: #343a40;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .hero-blog {
+      background: linear-gradient(135deg, rgba(58,123,213,0.9) 0%, rgba(0,210,255,0.9) 100%);
+      color: white;
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-blog::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    
+    .hero-blog .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .blog-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      height: 100%;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .blog-card .card-img-top {
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .blog-card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    
+    .blog-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent);
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      color: white;
+      border-radius: 50px;
+      font-weight: 500;
+      z-index: 1;
+    }
+    
+    .blog-card .card-body {
+      padding: 1.5rem;
+    }
+    
+    .blog-card .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .blog-card .card-text {
+      color: #666;
+      margin-bottom: 1.25rem;
+    }
+    
+    .blog-date {
+      color: var(--primary);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .btn-read-more {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .btn-read-more:hover {
+      background: var(--secondary);
+      color: white;
+    }
+    
+    .testimonial-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .testimonial-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      height: 100%;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .testimonial-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+    }
+    
+    .rating {
+      color: #ffc107;
+    }
+    
+    .faq-section {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-top: 3rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    
+    .accordion-item {
+      border: none;
+      margin-bottom: 1rem;
+      border-radius: 10px !important;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: rgba(58, 123, 213, 0.1);
+      color: var(--primary);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .text-gradient {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .floating-help {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    .floating-help:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar (same as gallery page) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Student Nest</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-2"><a class="btn btn-primary px-3" href="booking.html">Book Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Blog Section -->
+  <section class="hero-blog">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown">Student <span class="text-gradient">Blog</span></h1>
+          <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-1s">Discover tips, guides, and stories to make your student living experience better</p>
+          <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+            <a href="#blog-posts" class="btn btn-light btn-lg px-4">Read Articles</a>
+            <a href="#testimonials" class="btn btn-outline-light btn-lg px-4">Testimonials</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="container py-5" id="blog-posts">
+    <div class="text-center mb-5">
+      <h2 class="section-title" data-aos="fade-up">Latest <span class="text-gradient">Articles</span></h2>
+      <p class="lead mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Stay updated with the latest in student housing and tips for comfortable PG living.</p>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Blog 1 -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="blog-card card">
+          <span class="blog-badge"><i class="fas fa-star me-1"></i> Popular</span>
+          <img src="girl.jpg" class="card-img-top" alt="Finding PG">
+          <div class="card-body">
+            <span class="blog-date"><i class="far fa-calendar-alt me-2"></i>June 15, 2023</span>
+            <h5 class="card-title">Finding the Best PG Near Campus</h5>
+            <p class="card-text">Tips to identify secure and affordable student housing options near your university.</p>
+            <button class="btn btn-read-more read-more-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#blogOffcanvas" data-title="Finding the Best PG Near Campus" data-date="June 15, 2023" data-img="girl.jpg">
+              Read More <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Blog 2 -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="blog-card card">
+          <span class="blog-badge"><i class="fas fa-lightbulb me-1"></i> Tips</span>
+          <img src="coliving.jpg" class="card-img-top" alt="Room furnishing">
+          <div class="card-body">
+            <span class="blog-date"><i class="far fa-calendar-alt me-2"></i>May 28, 2023</span>
+            <h5 class="card-title">How to Furnish Your PG Room</h5>
+            <p class="card-text">Essential furniture and decor ideas to make your space cozy and productive.</p>
+            <button class="btn btn-read-more read-more-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#blogOffcanvas" data-title="How to Furnish Your PG Room" data-date="May 28, 2023" data-img="coliving.jpg">
+              Read More <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Blog 3 -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="blog-card card">
+          <span class="blog-badge"><i class="fas fa-book me-1"></i> Study</span>
+          <img src="room2.jpg" class="card-img-top" alt="Balancing studies">
+          <div class="card-body">
+            <span class="blog-date"><i class="far fa-calendar-alt me-2"></i>April 10, 2023</span>
+            <h5 class="card-title">Balancing Studies & Hostel Life</h5>
+            <p class="card-text">Time management and lifestyle habits for students living away from home.</p>
+            <button class="btn btn-read-more read-more-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#blogOffcanvas" data-title="Balancing Studies & Hostel Life" data-date="April 10, 2023" data-img="room2.jpg">
+              Read More <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="container py-5" id="testimonials">
+    <div class="testimonial-section">
+      <div class="text-center mb-5">
+        <h2 class="section-title" data-aos="fade-up">Student <span class="text-gradient">Testimonials</span></h2>
+        <p class="lead mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Hear from our community of students</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Testimonial 1 -->
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="testimonial-card card">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-4">
+                <img src="blog1.jpg" class="testimonial-img me-3" alt="Aaysha">
+                <div>
+                  <h5 class="mb-0">Aaysha Singh</h5>
+                  <small class="text-success">Verified Student</small>
+                </div>
+              </div>
+              <div class="mb-3">
+                <p class="mb-0">Finding a safe and affordable PG near my college felt impossible—until I found Student Nest. Smooth booking, great hygiene, and amazing support!</p>
+              </div>
+              <div class="mt-4">
+                <div class="rating mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <small class="text-muted">Posted 2 weeks ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card card">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-4">
+                <img src="blog2.jpg" class="testimonial-img me-3" alt="Kaushal">
+                <div>
+                  <h5 class="mb-0">Kaushal Chatterjee</h5>
+                  <small class="text-primary">Top Reviewer</small>
+                </div>
+              </div>
+              <div class="mb-3">
+                <p class="mb-0">The service is top-notch. My room was fully furnished, and the amenities were just like home. Definitely recommending to all my juniors!</p>
+              </div>
+              <div class="mt-4">
+                <div class="rating mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <small class="text-muted">Posted 1 month ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card card">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-4">
+                <img src="blog3.jpg" class="testimonial-img me-3" alt="Riddhi">
+                <div>
+                  <h5 class="mb-0">Riddhi Gupta</h5>
+                  <small class="text-dark">Frequent User</small>
+                </div>
+              </div>
+              <div class="mb-3">
+                <p class="mb-0">I've used the platform twice while shifting cities. Loved how everything was transparent—especially the reviews and security filters.</p>
+              </div>
+              <div class="mt-4">
+                <div class="rating mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <small class="text-muted">Posted 3 months ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container py-5">
+    <div class="faq-section">
+      <div class="text-center mb-5">
+        <h2 class="section-title" data-aos="fade-up">Frequently <span class="text-gradient">Asked Questions</span></h2>
+        <p class="lead mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Got doubts? We've answered some of the common queries for you.</p>
+      </div>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item" data-aos="fade-up">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1">
+              <i class="fas fa-home me-2"></i> How do I book a PG through Student Nest?
+            </button>
+          </h2>
+          <div id="faqCollapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Simply browse listings, check availability, and click on "Book Now." Our team will follow up with confirmation and visit arrangements if needed.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2">
+              <i class="fas fa-shield-alt me-2"></i> Are listings verified for safety and cleanliness?
+            </button>
+          </h2>
+          <div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes! We personally verify each PG/hostel for hygiene, safety, and location convenience before listing it on our platform.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3">
+              <i class="fas fa-credit-card me-2"></i> What payment methods are accepted?
+            </button>
+          </h2>
+          <div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              We accept UPI, credit/debit cards, net banking, and even cash on spot for select listings.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Help Button -->
+  <a href="contact.html" class="floating-help animate__animated animate__pulse animate__infinite animate__slower">
+    <i class="fas fa-question"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- Footer (same as gallery page) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>About Student Nest</h5>
+          <p>Your trusted platform for finding safe and reliable accommodation near your college.</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Blog Offcanvas -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="blogOffcanvas" aria-labelledby="blogOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="blogOffcanvasLabel">Blog Details</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <img src="" id="offcanvasImage" class="img-fluid mb-3 rounded" alt="Blog Image">
+      <div class="d-flex justify-content-between mb-3">
+        <span class="text-primary"><i class="far fa-calendar-alt me-2"></i><span id="offcanvasDate"></span></span>
+        <span class="text-muted"><i class="far fa-clock me-2"></i>5 min read</span>
+      </div>
+      <h4 id="offcanvasTitle"></h4>
+      <div id="offcanvasContent">
+        <!-- Content will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Blog offcanvas functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const readMoreButtons = document.querySelectorAll('.read-more-btn');
+      
+      readMoreButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const title = this.getAttribute('data-title');
+          const date = this.getAttribute('data-date');
+          const imgSrc = this.getAttribute('data-img');
+          
+          document.getElementById('offcanvasTitle').textContent = title;
+          document.getElementById('offcanvasDate').textContent = date;
+          document.getElementById('offcanvasImage').src = imgSrc;
+          
+          let fullContent = '';
+          if (title.includes("Finding the Best PG")) {
+            fullContent = `<p>Finding the perfect paying guest accommodation near your college can be challenging, but with these tips, you'll be able to make an informed decision.</p>
+            <h5 class="mt-4">Key Considerations</h5>
+            <ul class="mb-4">
+              <li><strong>Location:</strong> Ideally within walking distance or short commute to save time and transportation costs</li>
+              <li><strong>Safety:</strong> Check for CCTV, security guards, and women-only options if needed</li>
+              <li><strong>Budget:</strong> Compare prices and what's included (meals, laundry, etc.)</li>
+              <li><strong>Reviews:</strong> Read experiences from current/past residents</li>
+            </ul>
+            <h5>Our Verification Process</h5>
+            <p>Student Nest verifies all listings to ensure they meet basic safety and hygiene standards. We conduct personal visits and background checks on property owners.</p>`;
+          } 
+          else if (title.includes("Furnish Your PG Room")) {
+            fullContent = `<p>Moving into a new PG room? Here's how to transform it into a comfortable and functional space without breaking the bank.</p>
+            <h5 class="mt-4">Space-Saving Ideas</h5>
+            <ul class="mb-4">
+              <li><strong>Multifunctional furniture:</strong> Foldable desks, storage beds, and stackable chairs</li>
+              <li><strong>Wall organizers:</strong> For books, stationery, and accessories to keep surfaces clear</li>
+              <li><strong>LED lights:</strong> Create ambiance without taking up space</li>
+              <li><strong>Portable study lamp:</strong> Essential for late-night studying</li>
+            </ul>
+            <h5>Before You Buy</h5>
+            <p>Remember to check with your PG about any restrictions before making purchases. Some PGs have rules about nails in walls or additional furniture.</p>`;
+          }
+          else if (title.includes("Balancing Studies")) {
+            fullContent = `<p>Living away from home for the first time can be exciting but challenging. Here's how to maintain academic focus while enjoying hostel life.</p>
+            <h5 class="mt-4">Academic Success Tips</h5>
+            <ul class="mb-4">
+              <li><strong>Set a routine:</strong> Designate study hours and stick to them</li>
+              <li><strong>Find quiet spaces:</strong> Libraries or study rooms are better than your room</li>
+              <li><strong>Limit distractions:</strong> Use website blockers during study time</li>
+              <li><strong>Join study groups:</strong> Collaborate with classmates</li>
+            </ul>
+            <h5>Student Nest Advantage</h5>
+            <p>Most Student Nest properties have dedicated study areas to help you focus, along with high-speed internet for research and online classes.</p>`;
+          }
+          
+          document.getElementById('offcanvasContent').innerHTML = fullContent;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

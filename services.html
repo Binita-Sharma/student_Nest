@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Student Nest</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #3a7bd5;
+      --secondary: #00d2ff;
+      --accent: #ff6b6b;
+      --light: #f8f9fa;
+      --dark: #343a40;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    .hero-services {
+      background: linear-gradient(135deg, rgba(58,123,213,0.9) 0%, rgba(0,210,255,0.9) 100%);
+      color: white;
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1529408632839-a54952c491e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    
+    .hero-services .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .service-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .service-card .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .service-card .card-body {
+      padding: 1.5rem;
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .category-card {
+      border-radius: 15px;
+      padding: 1.5rem;
+      color: white;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .scrollspy-nav {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .scrollspy-nav .nav-link {
+      border-left: 3px solid transparent;
+      padding: 0.5rem 1rem;
+      color: var(--dark);
+      transition: all 0.3s ease;
+    }
+    
+    .scrollspy-nav .nav-link.active {
+      border-left: 3px solid var(--primary);
+      background: rgba(58,123,213,0.1);
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .scrollspy-nav .nav-link:hover:not(.active) {
+      background: rgba(0,0,0,0.05);
+    }
+    
+    .scrollspy-content {
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      padding: 2rem;
+    }
+    
+    .scrollspy-section {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .scrollspy-section:last-child {
+      border-bottom: none;
+    }
+    
+    .feature-badge {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 50px;
+      font-weight: 500;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    
+    .floating-help {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    .floating-help:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    .text-gradient {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+    
+    .footer a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer a:hover {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .footer-links {
+      column-count: 2;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Student Nest</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-2"><a class="btn btn-primary px-3" href="booking.html">Book Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Services Section -->
+  <section class="hero-services">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown">Our Services</h1>
+          <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-1s">Everything you need for a comfortable student living experience</p>
+          <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+            <a href="#features" class="btn btn-light btn-lg px-4">Key Features</a>
+            <a href="#categories" class="btn btn-outline-light btn-lg px-4">Accommodation Types</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Section -->
+  <section class="py-5" id="features">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="section-title" data-aos="fade-up">Our <span class="text-gradient">Key Features</span></h2>
+        <p class="lead mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Discover what makes Student Nest your perfect booking partner</p>
+      </div>
+      
+      <div class="row">
+        <!-- Scrollspy Navigation -->
+        <div class="col-lg-4">
+          <div class="scrollspy-nav" data-aos="fade-right">
+            <div class="list-group">
+              <a class="list-group-item list-group-item-action nav-link active" href="#verified-listings">Verified Listings</a>
+              <a class="list-group-item list-group-item-action nav-link" href="#user-dashboard">User Dashboard</a>
+              <a class="list-group-item list-group-item-action nav-link" href="#trusted-ratings">Trusted Ratings</a>
+              <a class="list-group-item list-group-item-action nav-link" href="#virtual-tours">Virtual Tours</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Scrollspy Content -->
+        <div class="col-lg-8">
+          <div class="scrollspy-content" data-aos="fade-left">
+            <div class="scrollspy-section" id="verified-listings">
+              <div class="d-flex align-items-center mb-3">
+                <div class="me-3">
+                  <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="mb-0">Verified Listings</h3>
+                </div>
+              </div>
+              <p>Student Nest prioritizes your safety and peace of mind. That's why every property listed on our platform undergoes a thorough verification process by our dedicated field team. We personally inspect hostels and PGs to ensure they meet the highest standards of hygiene, safety, and comfort.</p>
+              <p>This includes checking security systems, basic amenities, accessibility, locality, and owner reliability. Verified listings come with a badge so you can immediately recognize and trust them. With this feature, you'll never have to worry about fake photos, misleading descriptions, or scams.</p>
+              <div class="mt-3">
+                <span class="feature-badge bg-primary bg-opacity-10 text-primary">Safety Checked</span>
+                <span class="feature-badge bg-primary bg-opacity-10 text-primary">Hygiene Verified</span>
+                <span class="feature-badge bg-primary bg-opacity-10 text-primary">Authentic Photos</span>
+              </div>
+            </div>
+            
+            <div class="scrollspy-section" id="user-dashboard">
+              <div class="d-flex align-items-center mb-3">
+                <div class="me-3">
+                  <i class="fas fa-tachometer-alt fa-2x text-success"></i>
+                </div>
+                <div>
+                  <h3 class="mb-0">User Dashboard</h3>
+                </div>
+              </div>
+              <p>The Student Nest app offers an intuitive and personalized User Dashboard that simplifies the entire student housing experience. From a single, user-friendly interface, students can manage everything—search for PGs/hostels, book a room, track their payment history, view upcoming appointments, save favorites, and communicate directly with property owners.</p>
+              <p>The dashboard is specially designed with students in mind, featuring a clean layout, colorful icons, and mobile responsiveness for easy use on the go. It also sends important reminders about check-in dates, upcoming rent payments, and feedback requests, ensuring you stay organized and informed.</p>
+              <div class="mt-3">
+                <span class="feature-badge bg-success bg-opacity-10 text-success">Easy Booking</span>
+                <span class="feature-badge bg-success bg-opacity-10 text-success">Payment Tracking</span>
+                <span class="feature-badge bg-success bg-opacity-10 text-success">Mobile Friendly</span>
+              </div>
+            </div>
+            
+            <div class="scrollspy-section" id="trusted-ratings">
+              <div class="d-flex align-items-center mb-3">
+                <div class="me-3">
+                  <i class="fas fa-star fa-2x text-warning"></i>
+                </div>
+                <div>
+                  <h3 class="mb-0">Trusted Ratings</h3>
+                </div>
+              </div>
+              <p>Making a decision about where to stay is easier when you hear from people who've actually been there. That's why Student Nest features Trusted Ratings from verified students who have stayed at the listed PGs or hostels. Every review is carefully moderated to ensure authenticity—only users who've booked through our platform can rate and share their experience.</p>
+              <p>You get real feedback about cleanliness, food quality, landlord behavior, neighborhood safety, and more. Ratings are displayed as detailed scores and honest written comments, offering a 360-degree view of each property. It helps future users understand the pros and cons before making a choice. These reviews aren't just for show—they influence how listings appear in search results and help hold property owners accountable for quality.</p>
+              <div class="mt-3">
+                <span class="feature-badge bg-warning bg-opacity-10 text-warning">Authentic Reviews</span>
+                <span class="feature-badge bg-warning bg-opacity-10 text-warning">Detailed Feedback</span>
+                <span class="feature-badge bg-warning bg-opacity-10 text-warning">Verified Students</span>
+              </div>
+            </div>
+            
+            <div class="scrollspy-section" id="virtual-tours">
+              <div class="d-flex align-items-center mb-3">
+                <div class="me-3">
+                  <i class="fas fa-vr-cardboard fa-2x text-info"></i>
+                </div>
+                <div>
+                  <h3 class="mb-0">Virtual Tours</h3>
+                </div>
+              </div>
+              <p>Student Nest brings your future room to your screen through immersive virtual tours. This feature allows students to explore properties in detail from the comfort of their current location. Whether it's walking through a room, checking the common areas, or inspecting the neighborhood, virtual tours give a transparent and interactive experience.</p>
+              <p>The 360-degree views help in understanding the exact layout and condition of the property before booking. It saves time, builds trust, and removes the anxiety of the unknown. Especially for students moving from far-off locations, this is a game-changer. With Virtual Tours, what you see is truly what you get.</p>
+              <div class="mt-3">
+                <span class="feature-badge bg-info bg-opacity-10 text-info">360° Views</span>
+                <span class="feature-badge bg-info bg-opacity-10 text-info">Interactive</span>
+                <span class="feature-badge bg-info bg-opacity-10 text-info">Time Saver</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="py-5 bg-light" id="categories">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="section-title" data-aos="fade-up">Accommodation <span class="text-gradient">Categories</span></h2>
+        <p class="lead mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Find the perfect living space for your needs</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Boys Hostel -->
+        <div class="col-md-6 col-lg-3" data-aos="zoom-in">
+          <div class="category-card bg-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="setCategory('boys')">
+            <div class="category-icon">
+              <i class="fas fa-male"></i>
+            </div>
+            <h4>Boys Hostel</h4>
+            <p class="mb-0">Safe and comfortable spaces for male students</p>
+            <span class="badge bg-white text-primary mt-2">From ₹5,999/month</span>
+          </div>
+        </div>
+        
+        <!-- Girls Hostel -->
+        <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="category-card bg-success" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="setCategory('girls')">
+            <div class="category-icon">
+              <i class="fas fa-female"></i>
+            </div>
+            <h4>Girls Hostel</h4>
+            <p class="mb-0">Secure and welcoming environments</p>
+            <span class="badge bg-white text-success mt-2">From ₹6,999/month</span>
+          </div>
+        </div>
+        
+        <!-- Co-Living -->
+        <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+          <div class="category-card bg-warning text-dark" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="setCategory('coliving')">
+            <div class="category-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>Co-Living</h4>
+            <p class="mb-0">Modern shared living spaces</p>
+            <span class="badge bg-white text-warning mt-2">From ₹7,999/month</span>
+          </div>
+        </div>
+        
+        <!-- Budget PG -->
+        <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+          <div class="category-card bg-danger" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="setCategory('budget')">
+            <div class="category-icon">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <h4>Budget PG</h4>
+            <p class="mb-0">Affordable options for students</p>
+            <span class="badge bg-white text-danger mt-2">From ₹4,999/month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Services Section -->
+  <section class="py-5">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="section-title" data-aos="fade-up">All <span class="text-gradient">Services</span></h2>
+        <p class="lead mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">Comprehensive solutions for your student living needs</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Verified PGs -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="service-card card">
+            <img src="room3.jpg" class="card-img-top" alt="Verified PGs">
+            <div class="card-body">
+              <div class="service-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4 class="card-title">Verified PGs</h4>
+              <p class="card-text">Explore verified properties with images, reviews, and maps.</p>
+              <div class="mt-3">
+                <span class="badge bg-primary bg-opacity-10 text-primary">Safety Checked</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary">Authentic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Instant Booking -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card card">
+            <img src="room2.jpg" class="card-img-top" alt="Instant Booking">
+            <div class="card-body">
+              <div class="service-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h4 class="card-title">Instant Booking</h4>
+              <p class="card-text">Choose your room and book instantly with a few simple steps.</p>
+              <div class="mt-3">
+                <span class="badge bg-success bg-opacity-10 text-success">Quick</span>
+                <span class="badge bg-success bg-opacity-10 text-success">Easy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 24/7 Support -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card card">
+            <img src="room4.jpg" class="card-img-top" alt="24/7 Support">
+            <div class="card-body">
+              <div class="service-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h4 class="card-title">24/7 Support</h4>
+              <p class="card-text">Get help anytime with our responsive customer support team.</p>
+              <div class="mt-3">
+                <span class="badge bg-info bg-opacity-10 text-info">Always Available</span>
+                <span class="badge bg-info bg-opacity-10 text-info">Quick Response</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Roommate Match -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="service-card card">
+            <img src="room11.jpg" class="card-img-top" alt="Roommate Match">
+            <div class="card-body">
+              <div class="service-icon">
+                <i class="fas fa-user-friends"></i>
+              </div>
+              <h4 class="card-title">Roommate Match</h4>
+              <p class="card-text">Find like-minded roommates to share your stay and reduce costs.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning bg-opacity-10 text-warning">Compatibility</span>
+                <span class="badge bg-warning bg-opacity-10 text-warning">Cost Sharing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Virtual Tours -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card card">
+            <img src="room12.jpg" class="card-img-top" alt="Virtual Tours">
+            <div class="card-body">
+              <div class="service-icon">
+                <i class="fas fa-vr-cardboard"></i>
+              </div>
+              <h4 class="card-title">Virtual Tours</h4>
+              <p class="card-text">Preview your room with 360° virtual walkthroughs before booking.</p>
+              <div class="mt-3">
+                <span class="badge bg-danger bg-opacity-10 text-danger">Immersive</span>
+                <span class="badge bg-danger bg-opacity-10 text-danger">Transparent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Student Community -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card card">
+            <img src="room13.jpg" class="card-img-top" alt="Student Community">
+            <div class="card-body">
+              <div class="service-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4 class="card-title">Student Community</h4>
+              <p class="card-text">Join meetups and social events to connect with other students.</p>
+              <div class="mt-3">
+                <span class="badge bg-purple bg-opacity-10 text-purple">Networking</span>
+                <span class="badge bg-purple bg-opacity-10 text-purple">Events</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Modal -->
+  <div class="modal fade" id="categoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="categoryModalTitle">Category Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img id="categoryModalImage" class="img-fluid rounded mb-3" style="height: 200px; width: 100%; object-fit: cover;" alt="Category Image">
+            <h4 id="categoryModalName"></h4>
+            <p id="categoryModalDescription" class="mb-3"></p>
+            <div class="d-flex justify-content-between mb-3">
+              <div>
+                <p class="mb-0"><strong>Price:</strong></p>
+                <p id="categoryModalPrice" class="h5"></p>
+              </div>
+              <div>
+                <p class="mb-0"><strong>Owner:</strong></p>
+                <p id="categoryModalOwner"></p>
+              </div>
+              <div>
+                <p class="mb-0"><strong>Location:</strong></p>
+                <p id="categoryModalLocation"></p>
+              </div>
+            </div>
+            <div id="categoryModalBadges" class="mb-3"></div>
+            <a href="booking.html" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Help Button -->
+  <a href="contact.html" class="btn btn-primary floating-help animate__animated animate__pulse animate__infinite animate__slower">
+    <i class="fas fa-question"></i>
+  </a>
+
+  <!-- Footer (kept exactly the same as requested) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>About Student Nest</h5>
+          <p>Your trusted platform for finding safe and reliable accommodation near your college.</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+
+    // Set category modal content
+    function setCategory(type) {
+      const modal = document.getElementById('categoryModal');
+      const title = modal.querySelector('#categoryModalTitle');
+      const name = modal.querySelector('#categoryModalName');
+      const desc = modal.querySelector('#categoryModalDescription');
+      const price = modal.querySelector('#categoryModalPrice');
+      const owner = modal.querySelector('#categoryModalOwner');
+      const location = modal.querySelector('#categoryModalLocation');
+      const image = modal.querySelector('#categoryModalImage');
+      const badges = modal.querySelector('#categoryModalBadges');
+
+      if(type === 'boys') {
+        title.textContent = 'Boys Hostel Details';
+        name.textContent = 'Boys Hostel';
+        desc.textContent = 'A safe and comfortable place for male students with all essential amenities including study areas, recreational spaces, and 24/7 security.';
+        price.textContent = '₹5,999/month';
+        owner.textContent = 'Mr. Rajesh Kumar';
+        location.textContent = 'Near City College, Bangalore';
+        image.src = 'room2.jpg';
+        badges.innerHTML = `
+          <span class="badge bg-primary">Verified</span>
+          <span class="badge bg-warning">24/7 Security</span>
+          <span class="badge bg-success">Wi-Fi</span>
+        `;
+      }
+      else if(type === 'girls') {
+        title.textContent = 'Girls Hostel Details';
+        name.textContent = 'Girls Hostel';
+        desc.textContent = 'A peaceful and secure environment for female students with excellent facilities including CCTV surveillance, housekeeping, and healthy meals.';
+        price.textContent = '₹6,999/month';
+        owner.textContent = 'Ms. Priya Sharma';
+        location.textContent = 'Near Women\'s College, Delhi';
+        image.src = 'girl.jpg';
+        badges.innerHTML = `
+          <span class="badge bg-primary">Verified</span>
+          <span class="badge bg-danger">Women Only</span>
+          <span class="badge bg-success">Meals Included</span>
+        `;
+      }
+      else if(type === 'coliving') {
+        title.textContent = 'Co-Living Details';
+        name.textContent = 'Co-Living Space';
+        desc.textContent = 'Modern co-living spaces with shared facilities designed for students who value community living. Includes shared kitchens, lounges, and study rooms.';
+        price.textContent = '₹7,999/month';
+        owner.textContent = 'Urban Living Spaces';
+        location.textContent = 'Central Mumbai';
+        image.src = 'coliving.jpg';
+        badges.innerHTML = `
+          <span class="badge bg-primary">Verified</span>
+          <span class="badge bg-info">Community Events</span>
+          <span class="badge bg-success">Fully Furnished</span>
+        `;
+      }
+      else if(type === 'budget') {
+        title.textContent = 'Budget PG Details';
+        name.textContent = 'Budget PG';
+        desc.textContent = 'Affordable paying guest accommodations for students on tight budgets. Basic amenities included with options for meal plans.';
+        price.textContent = '₹4,999/month';
+        owner.textContent = 'Mr. Gupta';
+        location.textContent = 'Near University Area, Pune';
+        image.src = 'room3.jpg';
+        badges.innerHTML = `
+          <span class="badge bg-primary">Verified</span>
+          <span class="badge bg-warning">Budget Friendly</span>
+          <span class="badge bg-info">Flexible Options</span>
+        `;
+      }
+    }
+  </script>
+</body>
+
+</html>

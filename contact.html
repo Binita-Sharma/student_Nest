@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Student Nest</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #3a86ff;
+      --secondary-color: #8338ec;
+      --accent-color: #ff006e;
+      --light-bg: #f8f9fa;
+      --dark-bg: #212529;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+      padding-top: 56px;
+    }
+    
+    .navbar {
+      background-color: var(--dark-bg) !important;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    
+    h2 {
+      font-family: 'Pacifico', cursive;
+      color: var(--primary-color);
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    h2:after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background: var(--secondary-color);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+    
+    /* Breadcrumbs */
+    .breadcrumb {
+      background-color: transparent;
+      padding: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb-item.active {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+    
+    /* Contact Hero */
+    .contact-hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .contact-hero h1 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    /* Contact Form */
+    .contact-form-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .form-control {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(58, 134, 255, 0.25);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2a75e6;
+      border-color: #2a75e6;
+      transform: translateY(-2px);
+    }
+    
+    /* Contact Info */
+    .contact-info-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      height: 100%;
+    }
+    
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+      background: rgba(58, 134, 255, 0.1);
+      color: var(--primary-color);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    /* Entries Table */
+    .entries-table-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .table {
+      margin-bottom: 0;
+    }
+    
+    .table thead th {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .table-hover tbody tr:hover {
+      background-color: rgba(58, 134, 255, 0.05);
+    }
+    
+    /* Map Section */
+    .map-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+    
+    /* Tooltips */
+    .tooltip-inner {
+      background-color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    
+    .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+    .bs-tooltip-top .tooltip-arrow::before {
+      border-top-color: var(--primary-color);
+    }
+    
+    /* Footer */
+    .footer {
+      background: #343a40;
+      color: white;
+      padding: 1rem 0;
+    }
+    .footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar (same as gallery page) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Student Nest</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-2"><a class="btn btn-primary px-3" href="booking.html">Book Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Breadcrumbs -->
+  <div class="container mt-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Contact</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">Contact Us</h1>
+      <p class="lead">Have questions or feedback? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="contact-form-container">
+          <h3><i class="fas fa-paper-plane me-2"></i> Send us a message</h3>
+          <p class="text-muted mb-4">Fill out the form below and we'll get back to you soon</p>
+          
+          <form id="contactForm">
+            <div class="mb-3">
+              <label for="cname" class="form-label">Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="cname" required
+                     data-bs-toggle="tooltip" data-bs-placement="right" 
+                     title="Please enter your full name">
+            </div>
+            <div class="mb-3">
+              <label for="cemail" class="form-label">Email <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="cemail" required
+                     data-bs-toggle="tooltip" data-bs-placement="right" 
+                     title="We'll use this to contact you">
+            </div>
+            <div class="mb-3">
+              <label for="cmessage" class="form-label">Message <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="cmessage" rows="5" required
+                        data-bs-toggle="tooltip" data-bs-placement="right" 
+                        title="Tell us how we can help you"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane me-2"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="contact-info-card">
+          <h3><i class="fas fa-map-marker-alt me-2"></i> Our Information</h3>
+          <p class="text-muted mb-4">Here's how you can reach us</p>
+          
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h5>Address</h5>
+              <p>123 College Street, Kolkata, West Bengal</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h5>Phone</h5>
+              <p>+91 98765 43210</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h5>Email</h5>
+              <p>contact@studentnest.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h5>Working Hours</h5>
+              <p>Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="entries-table-container">
+      <h3><i class="fas fa-history me-2"></i> Recent Messages</h3>
+      <p class="text-muted mb-4">Your previously submitted messages</p>
+      
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th><i class="fas fa-user me-1"></i> Name</th>
+              <th><i class="fas fa-envelope me-1"></i> Email</th>
+              <th><i class="fas fa-comment me-1"></i> Message</th>
+            </tr>
+          </thead>
+          <tbody id="contactTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="text-center mb-4">
+      <h3><i class="fas fa-map-marked-alt me-2"></i> Find Us On Map</h3>
+      <p class="lead">Visit our office location</p>
+    </div>
+    
+    <div class="map-container">
+      <div class="ratio ratio-16x9">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.071897338312!2d88.36389581450638!3d22.56859813841624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277bfe2f58f7f%3A0x7a6749b82b8e4cbd!2sKolkata%20College!5e0!3m2!1sen!2sin!4v1617103090416!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize tooltips
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+
+      const form = document.getElementById("contactForm");
+      const tableBody = document.getElementById("contactTableBody");
+
+      const contacts = JSON.parse(localStorage.getItem("studentNestContacts")) || [];
+      contacts.forEach(({ name, email, message }) => {
+        const row = `<tr><td>${name}</td><td>${email}</td><td>${message}</td></tr>`;
+        tableBody.innerHTML += row;
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("cname").value.trim();
+        const email = document.getElementById("cemail").value.trim();
+        const message = document.getElementById("cmessage").value.trim();
+
+        if (!name || !email || !message) {
+          alert("All fields are required.");
+          return;
+        }
+
+        const newEntry = { name, email, message };
+        contacts.push(newEntry);
+        localStorage.setItem("studentNestContacts", JSON.stringify(contacts));
+
+        tableBody.innerHTML += `<tr><td>${name}</td><td>${email}</td><td>${message}</td></tr>`;
+
+        alert("Your message has been submitted successfully!");
+        form.reset();
+
+        fetch("https://formsubmit.co/ajax/YOUR_EMAIL@example.com", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        })
+        .then(response => response.json())
+        .then(data => console.log("Email sent:", data))
+        .catch(error => console.error("Email error:", error));
+      });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>About Student Nest</h5>
+          <p>Your trusted platform for finding safe and reliable accommodation near your college.</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="about.html"><i class="fas fa-chevron-right me-1"></i> About</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right me-1"></i> Services</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right me-1"></i> Gallery</a></li>
+            <li><a href="blog.html"><i class="fas fa-chevron-right me-1"></i> Blog</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right me-1"></i> Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
